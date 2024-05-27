@@ -1,10 +1,81 @@
 package com.max.spring.mvc;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Employee {
     private String name;
     private String surname;
     private int salary;
     private String department;
+    private Map<String,String> departments;
+    private String[]  languages;
+
+    public Map<String, String> getLanguageList() {
+        return languageList;
+    }
+
+    public void setLanguageList(Map<String, String> languageList) {
+        this.languageList = languageList;
+    }
+
+    private Map<String,String> languageList;
+
+
+    public String[] getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String[] languages) {
+        this.languages = languages;
+    }
+
+
+    public Map<String, String> getCarBrands() {
+        return carBrands;
+    }
+
+    public void setCarBrands(Map<String, String> carBrands) {
+        this.carBrands = carBrands;
+    }
+
+    private Map<String,String> carBrands;
+
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(String carBrand) {
+        this.carBrand = carBrand;
+    }
+
+    private String carBrand;
+
+
+    public Map<String, String> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Map<String, String> departments) {
+        this.departments = departments;
+    }
+
+    public Employee(){
+        departments = new HashMap<>();
+        departments.put("IT", "Inf Tech");
+        departments.put("HR", "H R");
+        departments.put("Sales", "Sales");
+
+        carBrands = new HashMap<>();
+        carBrands.put("BMW", "BMW");
+        carBrands.put("Audi", "Audi");
+        carBrands.put("Fiat", "Fiat!");
+
+        languageList = new HashMap<>();
+        languageList.put("End", "EN");
+        languageList.put("Deu", "DE");
+        languageList.put("Fra", "FR!");
+    }
 
     public String getName() {
         return name;
@@ -38,8 +109,8 @@ public class Employee {
         this.department = department;
     }
 
-    public Employee() {
-    }
+//    public Employee() {
+//    }
 
     @Override
     public String toString() {
