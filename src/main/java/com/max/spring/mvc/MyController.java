@@ -1,9 +1,11 @@
 package com.max.spring.mvc;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,15 +33,20 @@ public class MyController {
     }
 
     @RequestMapping("/showDetails")
-    public String showEmpDetailsView(@ModelAttribute("employee") Employee employee) {
-        String name = employee.getName();
-        employee.setName("Mr" + name);
+    public String showEmpDetailsView(@Valid @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+//        String name = employee.getName();
+//        employee.setName("Mr" + name);
+//
+//        String surname = employee.getSurname();
+//        employee.setSurname("N " + surname);
+//
+//        Integer salary = employee.getSalary();
+//        employee.setSalary(salary * 10);
+        System.out.println("surname length = " + employee.getSurname().length());
 
-        String surname = employee.getSurname();
-        employee.setSurname("N " + surname);
-
-        Integer salary = employee.getSalary();
-        employee.setSalary(salary * 10);
+        if (bindingResult.hasErrors()) {
+            return "ask-emp-details-view";
+        }
 
         return "show-emp-details-view";
     }

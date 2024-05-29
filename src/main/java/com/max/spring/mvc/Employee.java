@@ -1,15 +1,44 @@
 package com.max.spring.mvc;
 
+import com.max.spring.mvc.validation.CheckEmail;
+import jakarta.validation.constraints.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Employee {
+    @Size(min = 2, max = 10, message = "name mustBe min2 symb")
     private String name;
+    @NotBlank(message = "sn is nesseceary field")
     private String surname;
+    @Min(value = 500, message = "must be more than 500")
+    @Max(value = 1000, message = "must be less than 1001")
     private int salary;
     private String department;
-    private Map<String,String> departments;
-    private String[]  languages;
+    private Map<String, String> departments;
+    private String[] languages;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Pattern(regexp = "\\d{3}-\\d{2}-\\d{2}", message = "please use PN pattern XXX-XX-XX")
+    private String phoneNumber;
+    @CheckEmail(value="abc.com", message = "gds")
+    private String email;
+
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public Map<String, String> getLanguageList() {
         return languageList;
@@ -19,7 +48,7 @@ public class Employee {
         this.languageList = languageList;
     }
 
-    private Map<String,String> languageList;
+    private Map<String, String> languageList;
 
 
     public String[] getLanguages() {
@@ -39,7 +68,7 @@ public class Employee {
         this.carBrands = carBrands;
     }
 
-    private Map<String,String> carBrands;
+    private Map<String, String> carBrands;
 
     public String getCarBrand() {
         return carBrand;
@@ -60,7 +89,7 @@ public class Employee {
         this.departments = departments;
     }
 
-    public Employee(){
+    public Employee() {
         departments = new HashMap<>();
         departments.put("IT", "Inf Tech");
         departments.put("HR", "H R");
